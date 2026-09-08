@@ -1,0 +1,15 @@
+{
+  "name": "terminal-lab-startup",
+  "displayName": "Terminal Lab Startup",
+  "description": "Open the Tensor School lab in a focused Bash terminal.",
+  "version": "1.0.0",
+  "publisher": "tensor-school",
+  "engines": { "vscode": "^1.95.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "extensionKind": ["workspace"],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{ "command": "terminalLab.focus", "title": "Lab 1: Focus Bash Terminal" }]
+  }
+}

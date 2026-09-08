@@ -5,16 +5,37 @@
     "context": ".."
   },
   "remoteUser": "vscode",
-  "containerEnv": { "SHELL": "/bin/bash" },
+  "containerEnv": {
+    "SHELL": "/bin/bash"
+  },
   "customizations": {
     "vscode": {
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.profiles.linux": {
-          "bash": { "path": "/bin/bash" }
-        }
-      }
+          "bash": {
+            "path": "/bin/bash"
+          }
+        },
+        "workbench.startupEditor": "none",
+        "workbench.secondarySideBar.defaultVisibility": "hidden",
+        "workbench.activityBar.location": "hidden",
+        "workbench.panel.defaultLocation": "bottom",
+        "workbench.panel.opensMaximized": "always",
+        "terminal.integrated.defaultLocation": "view",
+        "chat.disableAIFeatures": true,
+        "chat.commandCenter.enabled": false,
+        "github.copilot.enable": {
+          "*": false
+        },
+        "github.copilot.nextEditSuggestions.enabled": false,
+        "editor.inlineSuggest.enabled": false
+      },
+      "extensions": [
+        "-GitHub.copilot",
+        "-GitHub.copilot-chat"
+      ]
     }
   },
-  "postCreateCommand": "bash scripts/verify_environment.sh"
+  "postCreateCommand": "bash scripts/verify_environment.sh && python3 scripts/install_terminal_startup.py"
 }

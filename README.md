@@ -7,7 +7,7 @@ Use the printed student booklet during the session. The terminal runs Bash on Ub
 ## Start here
 
 1. Sign in to your own GitHub account and open [Create your Lab 1 Codespace](https://codespaces.new/nalinabrol/terminal-labs?quickstart=1). Create it on the `main` branch. The smallest available machine is sufficient.
-2. Wait for setup to finish. Choose **Terminal > New Terminal**, using the **bash** profile. Start in the `terminal-labs` repository folder. You do not need to fork or clone anything manually.
+2. Wait for setup to finish. A maximized **Lab 1 - Bash** terminal opens in the `terminal-labs` repository folder. The editor, Explorer, and AI panel start closed. Copilot is disabled in this workspace. You do not need to fork or clone anything manually.
 3. Type:
 
    ```bash
@@ -33,6 +33,8 @@ python3 ../../terminal-lab-1/check.py
 ```
 
 The checker reads your files and reports which conditions pass. It does not repair, upload, or submit your work. Use the printed booklet for predictions, observations, and explanations.
+
+To restore the terminal layout at any time, open the Command Palette and run **Lab 1: Focus Bash Terminal**.
 
 ## If setup fails
 
