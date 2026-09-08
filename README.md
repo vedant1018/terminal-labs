@@ -7,7 +7,7 @@ Use the printed student booklet during the session. The terminal runs Bash on Ub
 ## Start here
 
 1. Sign in to your own GitHub account and open [Create your Lab 1 Codespace](https://codespaces.new/nalinabrol/terminal-labs?quickstart=1). Create it on the `main` branch. The smallest available machine is sufficient.
-2. Wait for setup to finish. If prompted, choose **Trust Folder & Continue** for this course repository. A maximized **Lab 1 - Bash** terminal opens in the `terminal-labs` repository folder. The editor, Explorer, and AI panel start closed. Copilot is disabled in this workspace. You do not need to fork or clone anything manually.
+2. Wait for setup to finish. If prompted, choose **Trust Folder & Continue** for this course repository. A maximized **Bash** terminal opens in the `terminal-labs` repository folder. The editor, Explorer, and AI panel start closed. Copilot is disabled in this workspace. You do not need to fork or clone anything manually.
 3. Type:
 
    ```bash
