@@ -1,0 +1,20 @@
+{
+  "name": "Terminal Lab 1 - Bash",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "vscode",
+  "containerEnv": { "SHELL": "/bin/bash" },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": { "path": "/bin/bash" }
+        }
+      }
+    }
+  },
+  "postCreateCommand": "bash scripts/verify_environment.sh"
+}
