@@ -36,5 +36,13 @@ with tempfile.TemporaryDirectory(prefix='terminal-lab-extension-') as directory:
         archive.writestr('[Content_Types].xml', content_types)
         for name in ('package.json', 'extension.js'):
             archive.write(source / name, f'extension/{name}')
-    subprocess.run(['code', '--install-extension', str(bundle), '--force'], check=True)
+    # During postCreate there is no connected editor / remote-cli IPC socket.
+    # Use the installed server CLI directly, before the extension host starts.
+    candidates = list(Path('/vscode/bin').glob('*/*/bin/code-server'))
+    candidates += list((Path.home() / '.vscode-remote/bin').glob('*/bin/code-server'))
+    candidates += list((Path.home() / '.vscode-server/bin').glob('*/bin/code-server'))
+    if not candidates:
+        raise RuntimeError('VS Code server installer was not found.')
+    server = max(candidates, key=lambda path: path.stat().st_mtime)
+    subprocess.run([str(server), '--install-extension', str(bundle), '--force'], check=True)
 print('Terminal Lab Startup installed.')
