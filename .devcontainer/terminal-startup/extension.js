@@ -1,11 +1,32 @@
 const vscode = require('vscode');
 
-async function focusLab() {
+function restoredLabTerminal() {
+  const existing = vscode.window.terminals.find(t => t.name === 'Lab 1 - Bash');
+  if (existing) return Promise.resolve(existing);
+  // Persistent terminals arrive asynchronously after the extension host starts.
+  // Give restoration time to publish the existing shell before creating one.
+  return new Promise(resolve => {
+    const finish = terminal => {
+      clearTimeout(timeout);
+      listener.dispose();
+      resolve(terminal);
+    };
+    const listener = vscode.window.onDidOpenTerminal(terminal => {
+      if (terminal.name === 'Lab 1 - Bash') finish(terminal);
+    });
+    const timeout = setTimeout(() => finish(
+      vscode.window.terminals.find(t => t.name === 'Lab 1 - Bash')
+    ), 5000);
+  });
+}
+
+async function focusLab(waitForRestore = false) {
   const folder = vscode.workspace.workspaceFolders?.[0];
   if (!folder) return;
 
   // Reuse the student's terminal on reconnect. Never reset their shell or files.
-  const terminal = vscode.window.terminals.find(t => t.name === 'Lab 1 - Bash')
+  const terminal = (waitForRestore ? await restoredLabTerminal()
+    : vscode.window.terminals.find(t => t.name === 'Lab 1 - Bash'))
     || vscode.window.createTerminal({
       name: 'Lab 1 - Bash',
       shellPath: '/bin/bash',
@@ -29,8 +50,8 @@ async function focusLab() {
 }
 
 function activate(context) {
-  context.subscriptions.push(vscode.commands.registerCommand('terminalLab.focus', focusLab));
-  return focusLab().catch(error => {
+  context.subscriptions.push(vscode.commands.registerCommand('terminalLab.focus', () => focusLab()));
+  return focusLab(true).catch(error => {
     vscode.window.showErrorMessage(`Lab terminal startup: ${error.message}`);
   });
 }
