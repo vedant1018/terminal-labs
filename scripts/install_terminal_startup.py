@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Package and install the repository's dependency-free VS Code startup extension."""
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
@@ -44,5 +45,9 @@ with tempfile.TemporaryDirectory(prefix='terminal-lab-extension-') as directory:
     if not candidates:
         raise RuntimeError('VS Code server installer was not found.')
     server = max(candidates, key=lambda path: path.stat().st_mtime)
-    subprocess.run([str(server), '--install-extension', str(bundle), '--force'], check=True)
+    # Codespaces uses .vscode-remote, while standalone server CLI defaults to
+    # .vscode-server. Install into the directory used by the attached host.
+    remote_data = Path.home() / ('.vscode-remote' if os.environ.get('CODESPACES') == 'true' else '.vscode-server')
+    subprocess.run([str(server), '--extensions-dir', str(remote_data / 'extensions'),
+                    '--install-extension', str(bundle), '--force'], check=True)
 print('Terminal Lab Startup installed.')
