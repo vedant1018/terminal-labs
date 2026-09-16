@@ -1,0 +1,3 @@
+ERROR badge missing
+ERROR door blocked
+ERROR printer offline

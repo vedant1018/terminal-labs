@@ -1,0 +1,5 @@
+EVENT=EVBCE807
+TICKET=TK72A05E
+Locate the file named approved-EVBCE807.txt under rescue/inbox.
+Use rescue/system.log for the error report.
+Remove ONLY rescue/discard/TK72A05E.tmp.

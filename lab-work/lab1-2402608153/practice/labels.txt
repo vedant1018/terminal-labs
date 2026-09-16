@@ -1,0 +1,4 @@
+ERROR
+error
+ERROR ERROR
+INFO

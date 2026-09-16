@@ -1,0 +1,2 @@
+ERROR door blocked
+ERROR printer offline
